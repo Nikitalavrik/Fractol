@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 17:59:06 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/28 19:38:37 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/11/01 17:15:49 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,20 @@ void		vis_win(t_fractol *fractol)
 	int	color;
 	t_func	*func;
 
-	y = 0;
+	y = fractol->from_y;
 	color = 0;
 	func = get_func(fractol->id_fractol);
-	while (y < HEIGHT)
+	while (y < fractol->to_y)
 	{
-		x = 0;
-		while (x < WIDTH)
+		x = fractol->from_x;
+		while (x < fractol->to_x)
 		{
-			color = func(fractol, x, y);
-			// ft_printf("color = %i\n", color);
+			color = brute_fractol(fractol, x, y, func);
 			color = convert(color);
-			// ft_printf("convert = %i\n", color);
 			put_pixel(fractol, x, y, color);
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->image, 0, 0);
+	// mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->image, 0, 0);
 }

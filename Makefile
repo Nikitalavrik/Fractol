@@ -6,7 +6,7 @@
 #    By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/21 15:00:08 by nlavrine          #+#    #+#              #
-#    Updated: 2019/10/28 18:02:30 by nlavrine         ###   ########.fr        #
+#    Updated: 2019/10/31 14:27:58 by nlavrine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRC =	main.c		\
 		error.c		\
 		catch_key.c	\
 		choose_fractol.c	\
-		vis.c
+		vis.c				\
+		thread.c
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
@@ -35,7 +36,7 @@ OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 all: $(NAME) 
 
 $(NAME): $(LIB) $(PRINTF) $(OBJS)
-		@$(CC) $(FLAGS) -framework OpenGL -framework AppKit -lm $(OBJS) $(PRINTF) $(LIB) $(PRINTF) $(MINILIBX) -o $(NAME)
+		@$(CC) $(FLAGS) -framework OpenGL -framework AppKit -lm  -lpthread $(OBJS) $(PRINTF) $(LIB) $(PRINTF) $(MINILIBX) -o $(NAME)
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@mkdir -p $(OBJ_DIR)
