@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 13:49:08 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/31 16:24:27 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/11/02 13:57:40 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	vis_thread(t_fractol *fractol)
 {
-	int		i;
-	pthread_t		thread[THREADS_NUM];
+	int			i;
+	pthread_t	thread[THREADS_NUM];
 	t_fractol	fractols[THREADS_NUM];
 
 	i = 0;
@@ -34,4 +34,6 @@ void	vis_thread(t_fractol *fractol)
 		i++;
 	}
 	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->image, 0, 0);
+	if (fractol->show_menu)
+		string_toolbar(fractol);
 }
